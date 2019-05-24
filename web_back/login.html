@@ -32,5 +32,90 @@
     </div> 
 
 </body>
-
+<script src="./js/jquery-1.12.4.min.js"></script>
 </html>
+<script>
+
+$(function(){
+  $('.input_sub').click(function(e){
+       var user_name=$('.input_txt').val().trim()
+       var password=$('.input_pass').val().trim()
+       e.preventDefault()
+
+       if(user_name==''||password==''){
+           alert('请输入密码')
+           return
+       }
+       $.ajax({
+           url:'https://autumnfish.cn/big/admin/login',
+           type:'post',
+           data:{
+               user_name:user_name,
+               password:password
+           },
+           success:function(backData){
+               console.log(backData);
+               if(backData.code==400){
+                   alert('请输入正确密码')
+               }else if(backData.code==200){
+                   window.location.href='./index.html'
+               }
+           }
+       })
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(function(){
+  $('.input_sub').click(function(e){
+     var user_name=$('.input_txt').val().trim()
+
+     var password=$('.input_pass').val().trim()
+    e.preventDefault()
+     if(user_name==''||password==''){
+       alert('写东西啊')
+         return
+     }
+     $.ajax({
+         url: 'https://autumnfish.cn/big/admin/login',
+         type:'post',
+         data:{
+             user_name:user_name,
+             password:password
+         },
+         success:function(backData){
+             console.log(backData);
+             if(backData.code==400){
+                 alert('密码错误')
+             }else if(backData.code==200){
+                 window.location.href='./index.html'
+             }
+         }
+     })
+  })
+})
+
+</script>
