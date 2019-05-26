@@ -109,7 +109,13 @@
        }
    })
 
-   $('.')
+   $('.exampleInputFile').change(function(){
+         var file=this.file[0]
+
+         var url=URL.createObjectURL(file)
+
+         $(this).prev().attr('src',url)
+   })
  })
  
  </script>
