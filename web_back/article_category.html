@@ -218,10 +218,31 @@
             .addClass('btn-success')
         }
       // 默认调用一次
-    
+       //点击新增还原外观
+        $('.btn-add').click(function(){
+           $('.modal-title').text('请肆意增加吧！！')
+           $('#model_add').text('新增').removeClass('btn-success')
+           $('form input').val('')
+
+        })
+       //改弹框内容
+
+       //清空内容
       // 点击新增按钮
       $('#model_add').click(function () {
-        $.ajax({
+        if($(this).hasClass('btn-success')){
+             $.ajax({
+               url:"http://localhost:8000/admin/category_edit",
+               type:'post',
+               data:$('form').serialize(),
+               success:function(backData){
+                 if(backData.code==200){
+                   getCate()
+                 }
+               }
+             })
+        }else{
+          $.ajax({
           url: 'http://localhost:8000/admin/category_add',
           type: 'post',
           data: {
@@ -239,6 +260,8 @@
             }
           }
         })
+        }
+        $('#addModal').modal('hide')
       })
     })
 
