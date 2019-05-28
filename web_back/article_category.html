@@ -204,17 +204,17 @@
      }
     window.editTr=function(data){
       for(const key in data){
-        $('input[name'+key+']').val(data[key])
+        $('input[name='+key+']').val(data[key])
       }
       $('.modal-title').text('尽情修改吧！')
       $('#model_add').text('保存').addClass('btn-success')
     }
-        
+   
       // 默认调用一次
        //点击新增还原外观
       $('.btn-add').click(function(){
        $('.modal-tltle').text('请肆意增加吧')
-       $('#model-add').text('新增').removeClass('btn-success')
+       $('#model_add').text('新增').removeClass('btn-success')
        $('form input').val('')
    })
    getCate()
