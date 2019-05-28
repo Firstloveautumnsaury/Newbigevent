@@ -188,43 +188,36 @@
           }
         })
       }
-      window.deleteTr=function(id){
-        //为啥形参里面要写个id 
-        $.ajax({
-          url:"http://localhost:8000/admin/category_delete",//删除文章类别
-          type:'post',
-          data:{
-            id: id 
-          },
-          success:function(backData){
-            if(backData.code==200){
+     window.deleteTr=function(id){
+       $.ajax({
+         url:'http://localhost:8000/admin/category_delete',
+         type:'post',
+         data:{
+           id:id 
+         },
+         success:function(backData){
+             if(backData.code==200){
               getCate()
-              //为啥还要调用一次接口
-            }
-          }
-        })
+             }
+         }
+       })
+     }
+    window.editTr=function(data){
+      for(const key in data){
+        $('input[name'+key+']').val(data[key])
       }
-
-      window.editTr = function(data) {
-          console.log(data)
-          // forin
-          for (const key in data) {
-            $('input[name=' + key + ']').val(data[key])
-          }
-          // 改弹框内容
-          $('.modal-title').text('敬请修改把！！！')
-          $('#model_add')
-            .text('保存')
-            .addClass('btn-success')
-        }
+      $('.modal-title').text('尽情修改吧！')
+      $('#model_add').text('保存').addClass('btn-success')
+    }
+        
       // 默认调用一次
        //点击新增还原外观
-        $('.btn-add').click(function(){
-           $('.modal-title').text('请肆意增加吧！！')
-           $('#model_add').text('新增').removeClass('btn-success')
-           $('form input').val('')
-
-        })
+      $('.btn-add').click(function(){
+       $('.modal-tltle').text('请肆意增加吧')
+       $('#model-add').text('新增').removeClass('btn-success')
+       $('form input').val('')
+   })
+   getCate()
        //改弹框内容
 
        //清空内容
@@ -248,7 +241,7 @@
           data: {
             name: $('.cate_name').val(),
             slug: $('.cate_slug').val()
-            //已存在  不能写一样的名字  和 slug  草拟吗。
+            //已存在  不能写一样的名字  和 slug 别名 草拟吗。
           },
           success: function (backData) {
               console.log(backData)
