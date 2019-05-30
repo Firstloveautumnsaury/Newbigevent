@@ -222,5 +222,39 @@
     </div>
 
 </body>
+<!-- 导入模板引擎 -->
+<script src="./js/template-web.js"></script>
+<!-- js -->
+<script src="./js/jquery-1.12.4.min.js"></script>
 
+<!-- 定义模板 -->
+
+<script type='text/html' id='artic'>
+    {{each data}}
+    {{if $index==0}}
+    <li class="first">
+      {{else}}
+       <li>
+    {{/if}}
+            <a href="./article.html?id={{$value.id}}"><img src="{{$value.cover}}" alt=""></a>
+            <p>{{$value.title}}</p>
+        </li>
+     {{/each}}
+</script>
+<script>
+$(function(){
+ $.ajax({
+     url:'http://localhost:8000/admin/search',
+     data:{
+         page:1,
+         perpage:5
+     },
+     success:function(backData){
+         var html=template('artic',backData)
+         $('.focus_list').html(html)
+     }
+ })
+})
+
+</script>
 </html>
